@@ -1,7 +1,7 @@
 /**
  * Note that with the tsconfig strict mode being on, we must set a
  * explicit value for he params
- */
+ * /
 // export default function CourseGoal({title, description}:{
 //   title: string;
 //   description: string;
