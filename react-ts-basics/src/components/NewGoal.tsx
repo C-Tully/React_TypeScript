@@ -1,6 +1,6 @@
 import { type FormEvent, useRef } from "react";
 
-//Possible approach to getting hte form data is the useState hook
+//Possible approach to getting thw form data is the useState hook
 //Note the HTMLFormElement type comes from the tsconfig -> DOM and DOM.Iterable inclusion
 
 type NewGoalProps = {
@@ -8,8 +8,10 @@ type NewGoalProps = {
 };
 
 export default function NewGoal({ onAddGoal }: NewGoalProps) {
-  //use null vrs undefined in this case
-  // since null means we will have a value
+  /**
+   * Use null vrs undefined in this case
+   * since null means we will have a value
+   */
 
   const goal = useRef<HTMLInputElement>(null);
   const summary = useRef<HTMLInputElement>(null);
@@ -21,14 +23,14 @@ export default function NewGoal({ onAddGoal }: NewGoalProps) {
     //adding the ! will force react to allow it
     const enteredGoal = goal.current!.value;
     const enteredSummary = summary.current!.value;
-
+    e?.currentTarget.reset();
     onAddGoal(enteredGoal, enteredSummary);
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <p>
-        <label htmlFor="goal"> You6r goal</label>
+        <label htmlFor="goal"> Your goal</label>
         <input id="goal" type="text" name="goal" ref={goal} />
       </p>
       <p>
