@@ -3,6 +3,7 @@ import { useState } from "react";
 import CourseGoalList from "./components/CourseGoalList.tsx";
 import goalsImage from "./assets/goals.jpg";
 import Header from "./components/Header.tsx";
+import NewGoal from "./components/NewGoal.tsx";
 
 export type CourseGoal = {
   title: string;
@@ -12,24 +13,21 @@ export type CourseGoal = {
 
 export default function App() {
   const [goals, setGoals] = useState<CourseGoal[]>([]);
-  /**
-   * Alternatively.. the built in generic array type
-   * const [goals, setGoals] = useState<Array<CourseGoal>>([]);
-   */
 
-  // function handleAddGoal() {
-  //   //we need to update state based on its previous snapshot
-  //   // if the new state depends on the old state, we wanna use this
-  //   // process
-  //   setGoals((prevGoals) => {
-  //     const newGoal: CourseGoal = {
-  //       id: Math.random(), //demo
-  //       title: "Lorem",
-  //       description: "ipsum",
-  //     };
-  //     return [...prevGoals, newGoal];
-  //   });
-  // }
+  function handleAddGoal() {
+    setGoals((prevGoals) => {
+      const newGoal: CourseGoal = {
+        id: Math.random(), //demo
+        title: "Lorem",
+        description: "ipsum",
+      };
+      return [...prevGoals, newGoal];
+    });
+  }
+
+  function handleDeleteGoal(id: number) {
+    setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
+  }
 
   return (
     <main>
@@ -39,7 +37,9 @@ export default function App() {
         <h1>This is a title</h1>
       </Header>
       {/* <button onClick={handleAddGoal}>Add goal</button> */}
-      <CourseGoalList goals={goals} />
+      <NewGoal onAddGoal={handleAddGoal} />
+      {/* prop drilling */}
+      <CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal} />
     </main>
   );
 }

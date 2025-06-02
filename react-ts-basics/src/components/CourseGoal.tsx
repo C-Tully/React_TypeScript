@@ -66,14 +66,24 @@ import { type PropsWithChildren, type ReactNode } from "react";
  * in tandem with another type.
  *
  */
-type CourseGoalProps = PropsWithChildren<{ title: string }>;
+type CourseGoalProps = PropsWithChildren<{
+  id: number;
+  title: string;
+  onDelete: (id: number) => void;
+}>;
 
 //children property
-export default function CourseGoal({ title, children }: CourseGoalProps) {
+export default function CourseGoal({
+  id,
+  title,
+  children,
+  onDelete,
+}: CourseGoalProps) {
   return (
     <article>
       <div>
-        <button>Delete</button>
+        <button onClick={() => onDelete(id)}>Delete</button>
+        {/* <button onClick={(event) => onDelete(id)}>Delete</button> */}
         <h2>{title}</h2>
         {children}
       </div>
