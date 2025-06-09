@@ -1,16 +1,42 @@
-import { type ComponentPropsWithoutRef } from "react";
+import {
+  forwardRef,
+  // type ComponentPropsWithRef,
+  // type ComponentPropsWithoutRef,
+} from "react";
 
 type InputProps = {
   label: string;
   id: string;
-} & ComponentPropsWithoutRef<"input">;
+};
+// } & ComponentPropsWithRef<"input">;
 // ComponentPropsWithoutRef<'literaltypeforspecifiElement'>
 
-export default function Input({ label, id, ...props }: InputProps) {
+/**
+ * Note: When forwarding a ref, we need ot make sure
+ * we are typing the forwardRef function with the
+ * expecting the type the ref will manage
+ * the second is the type of props it will receive
+ *
+ */
+
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, id, ...props },
+  ref
+) {
   return (
     <p>
       <label htmlFor={id}>{label}</label>
-      <input id={id} {...props} />
+      <input id={id} {...props} ref={ref} />
     </p>
   );
-}
+});
+export default Input;
+
+// export default function Input({ label, id, ...props }: InputProps) {
+//   return (
+//     <p>
+//       <label htmlFor={id}>{label}</label>
+//       <input id={id} {...props} ref={ref} />
+//     </p>
+//   );
+// }

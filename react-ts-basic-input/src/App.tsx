@@ -1,25 +1,44 @@
-// import Input from "./components/Input.tsx";
+//Ref example
+// import { forwardRef } from "react";
+import { useRef } from "react";
+import Input from "./components/Input.tsx";
 
-//PolyMorphic component
-import Button from "./components/Button.tsx";
-import Container from "./components/Container.tsx";
+//Re Forwaring Refs, we set the type here to make more clear
+//that it will connect to one of the same type, downstream.
+const input = useRef<HTMLInputElement>(null);
 
 function App() {
   return (
     <main>
-      <Container
-        as={Button}
-        onClick={() => {
-          console.log("click!");
-        }}
-      >
-        Click me
-      </Container>
+      <p>
+        <Input label="Test" id="test" ref={input} />
+      </p>
     </main>
   );
 }
 
-export default App;
+// //PolyMorphic component
+// import Button from "./components/Button.tsx";
+// import Container from "./components/Container.tsx";
+
+// import
+
+// function App() {
+//   return (
+//     <main>
+//       <Container
+//         as={Button}
+//         onClick={() => {
+//           console.log("click!");
+//         }}
+//       >
+//         Click me
+//       </Container>
+//     </main>
+//   );
+// }
+
+// export default App;
 
 /**
  * function App() {
