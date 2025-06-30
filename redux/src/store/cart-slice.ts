@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-type CartItem = {
+export type CartItem = {
   id: string;
   title: string;
   price: number;
@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
      * if it doesn't have the extra data, you don't need this specific type
      * The payload helps us define which data will be attached to the action
      */
-    addToCard(
+    addToCart(
       state,
       action: PayloadAction<{ id: string; title: string; price: number }>
     ) {
@@ -57,3 +57,5 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+export const { addToCart, removeFromCart } = cartSlice.actions;
