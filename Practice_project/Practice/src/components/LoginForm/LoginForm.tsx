@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
+import Button from "../Button/Button.tsx";
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
@@ -30,13 +31,11 @@ export default function LoginForm() {
   }
 
   return (
-    <>
-      <Form ref={form} onSave={handleLoginAttempt} id="login-form">
-        {inputConfig.map((item, index) => (
-          <Input key={index} label={item.name} id={item.id} type={item.type} />
-        ))}
-        <Button> </Button>
-      </Form>
-    </>
+    <Form ref={form} onSave={handleLoginAttempt} id="login-form">
+      {inputConfig.map((item, index) => (
+        <Input key={index} label={item.name} id={item.id} type={item.type} />
+      ))}
+      <Button>Login</Button>
+    </Form>
   );
 }
