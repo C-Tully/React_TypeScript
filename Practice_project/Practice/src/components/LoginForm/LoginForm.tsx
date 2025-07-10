@@ -35,6 +35,7 @@ export default function LoginForm() {
         {inputConfig.map((item, index) => (
           <Input key={index} label={item.name} id={item.id} type={item.type} />
         ))}
+        <Button> </Button>
       </Form>
     </>
   );
