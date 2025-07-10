@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import HomePage from "./pages/Home.tsx";
+import LoginPage from "./pages/Login.tsx";
 import SessionsPage from "./pages/Sessions.tsx";
 import SessionPage from "./pages/Session.tsx";
 import Root from "./pages/Root.tsx";
@@ -12,7 +13,7 @@ const Router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <LoginPage />,
       },
       { path: "sessions", element: <SessionsPage /> },
       { path: "sessions/:id", element: <SessionPage /> },
