@@ -2,27 +2,30 @@ import { useRef } from "react";
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
 import Button from "../Button/Button.tsx";
-import styles from "./LoginForm.scss";
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
 
   const inputConfig = [
     {
-      name: "User name",
+      name: "uName",
       type: "text",
-      id: "user-name",
+      id: "uName",
       label: {
         className: "block mb-1 text-sm font-medium text-gray-700",
+        name: "User name",
       },
+      required: true,
     },
     {
-      name: "Password",
+      name: "uPass",
       type: "text",
-      id: "user-pass",
+      id: "uPass",
       label: {
         className: "block mb-1 text-sm font-medium text-gray-700",
+        name: "Password",
       },
+      required: true,
     },
   ];
 
@@ -31,6 +34,8 @@ export default function LoginForm() {
       uName: string;
       uPass: string;
     };
+    if (!extractedData.uName || !extractedData.uPass) {
+    }
 
     //do some checks here
 
@@ -51,9 +56,10 @@ export default function LoginForm() {
           <div className="w-full max-w-sm">
             <Input
               key={index}
-              label={item.name}
+              label={item.label}
               id={item.id}
               type={item.type}
+              name={item.name}
               labelClassName={item.label.className}
             />
           </div>

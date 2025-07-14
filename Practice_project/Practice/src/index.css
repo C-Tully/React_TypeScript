@@ -32,8 +32,12 @@ ul {
   background-color: #a16cf7;
 }
 
+#login-form input {
+  border: 1px solid black;
+}
+
 .button.button--text-only {
-  background-color: transparent;
+  /* background-color: transparent; */
   color: #ccb2f6;
 }
 
@@ -73,7 +77,8 @@ ul {
   max-width: 35rem;
   font: inherit;
   font-size: 1.25rem;
-  border: 1px solid #d3cedc;
+  /* border: 1px solid #d3cedc; */
+  border: 1px solid black;
   border-radius: 4px;
   padding: 0.5rem;
 }
@@ -107,7 +112,7 @@ ul {
   text-decoration: none;
   color: #c6a8f5;
   padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
+  /* border-bottom: 2px solid transparent; */
 }
 
 #main-header a:hover,
