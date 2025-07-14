@@ -1,11 +1,19 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
+
+import Cookies from "js-cookie";
+
+import { setLoggedIn, logout } from "../../store/auth/authSlice.tsx";
+
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
 import Button from "../Button/Button.tsx";
-import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
-import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
-import { setLoggedIn } from "../store/slices/authSlice.tsx";
+
+const dispatch = useDispatch();
+
+// dispatch(setLoggedIn({ id: "abc123", privilidge: "USER" }));
+// dispatch(logout());
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
@@ -33,15 +41,10 @@ export default function LoginForm() {
     },
   ];
 
-  //
-
-  const dispatch = useDispatch();
-
   function handleLoginAttempt(id: string, privilidge: USER_PRIVILIDGE) {
-    // Set Redux state
+    //Set logged in using React first.
     dispatch(setLoggedIn({ id, privilidge }));
-
-    // Set cookie
+    // Set cookie in users browser so we can carry this forward
     Cookies.set("session", JSON.stringify({ id, privilidge }), {
       expires: 1, // 1 day
       secure: true,

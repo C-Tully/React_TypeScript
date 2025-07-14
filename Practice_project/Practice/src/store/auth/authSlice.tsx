@@ -36,4 +36,4 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setLoggedIn, setPrivilege } = authSlice.actions;
+export const { setLoggedIn, setPrivilege, logout } = authSlice.actions;
