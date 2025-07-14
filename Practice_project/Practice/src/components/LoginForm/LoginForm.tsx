@@ -2,6 +2,10 @@ import { useRef } from "react";
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
 import Button from "../Button/Button.tsx";
+import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { setLoggedIn } from "../store/slices/authSlice.tsx";
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
@@ -29,18 +33,34 @@ export default function LoginForm() {
     },
   ];
 
-  function handleLoginAttempt(data: unknown) {
-    const extractedData = data as {
-      uName: string;
-      uPass: string;
-    };
-    if (!extractedData.uName || !extractedData.uPass) {
-    }
+  //
 
-    //do some checks here
+  const dispatch = useDispatch();
 
-    return true;
+  function handleLoginAttempt(id: string, privilidge: USER_PRIVILIDGE) {
+    // Set Redux state
+    dispatch(setLoggedIn({ id, privilidge }));
+
+    // Set cookie
+    Cookies.set("session", JSON.stringify({ id, privilidge }), {
+      expires: 1, // 1 day
+      secure: true,
+      sameSite: "strict",
+    });
   }
+
+  // function handleLoginAttempt(data: unknown) {
+  //   const extractedData = data as {
+  //     uName: string;
+  //     uPass: string;
+  //   };
+  //   if (!extractedData.uName || !extractedData.uPass) {
+  //   }
+
+  //   //do some checks here
+
+  //   return true;
+  // }
 
   return (
     <Form
