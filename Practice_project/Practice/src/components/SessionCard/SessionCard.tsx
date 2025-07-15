@@ -5,6 +5,6 @@ import Button from "../Button/Button.tsx";
 //display.
 //form processing
 
-export default function Session() {
+export default function SessionCard() {
   //Get collection of courses?
 }

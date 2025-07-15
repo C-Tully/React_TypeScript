@@ -19,6 +19,7 @@ const Router = createBrowserRouter([
       { path: "sessions/:id", element: <SessionPage /> },
     ],
   },
+
   {
     path: "/logout",
     element: <Root />,
@@ -54,6 +55,19 @@ const Router = createBrowserRouter([
       { path: "sessions", element: <SessionsPage /> },
       { path: "sessions/:id", element: <SessionPage /> },
     ],
+  },
+  {
+    path: "/sessions",
+    element: <SessionsPage />,
+    loader: async () => {
+      const isLoggedIn = checkAuth(); // can be from a cookie or session
+      const res = await fetch(
+        isLoggedIn
+          ? "/api/sessions/user" // last 5 user sessions
+          : "/api/sessions/random" // 5 random sessions
+      );
+      return res.json();
+    },
   },
 ]);
 
