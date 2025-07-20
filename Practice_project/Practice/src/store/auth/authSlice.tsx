@@ -1,5 +1,11 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  type PayloadAction,
+  createAsyncThunk,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import { USER_PRIVILIDGE } from "../../utils/constants";
+import { post } from "../../utils/http";
 
 type AuthState = {
   id: string;
@@ -35,6 +41,24 @@ export const authSlice = createSlice({
     },
   },
 });
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (credentials: { username: string }, thunkAPI) => {
+    try {
+      const response = await post<
+        {
+          id: String;
+          privilidge: USER_PRIVILIDGE;
+        },
+        typeof credentials
+      >("/api/login", credentials);
+
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Login failed");
+    }
+  }
+);
 
 export const { setLoggedIn, setPrivilege, logout } = authSlice.actions;
 export default authSlice.reducer;

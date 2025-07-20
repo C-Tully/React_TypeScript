@@ -45,6 +45,7 @@ export default function LoginForm() {
 
     // Dummy check for now
     if (uName && uPass) {
+      console.log("handleLoginAttempt::Alpha");
       // Simulate assigning ID + privilidge
       const id = "abc123";
       const privilidge: USER_PRIVILIDGE = "USER";
@@ -69,9 +70,8 @@ export default function LoginForm() {
     >
       <div className="flex flex-col items-center gap-4">
         {inputConfig.map((item, index) => (
-          <div className="w-full max-w-sm">
+          <div className="w-full max-w-sm" key={item.id}>
             <Input
-              key={index}
               label={item.label}
               id={item.id}
               type={item.type}

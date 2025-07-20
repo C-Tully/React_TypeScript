@@ -22,7 +22,7 @@ export default function Header() {
       <a href="/">ReactMentoring</a>
       <ul className="flex gap-2">
         {linkCollection.map((item, index) => (
-          <li>
+          <li key={index}>
             <a href={item.href} className={item.class}>
               {item.text}
             </a>
