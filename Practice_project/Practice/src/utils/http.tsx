@@ -14,7 +14,7 @@ export async function get<T>(url: string): Promise<T> {
 
   //More type safety when using unknown
   //forces down stream typing
-  const data = response.json() as unknown;
+  const data = (await response.json()) as unknown;
   return data as T;
 }
 

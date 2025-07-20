@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store/hooks";
 import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
 
 import Cookies from "js-cookie";
 
-import { setLoggedIn, logout } from "../../store/auth/authSlice.tsx";
+import { setLoggedIn, logout, loginUser } from "../../store/auth/authSlice.tsx";
 
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
@@ -15,7 +16,7 @@ import Button from "../Button/Button.tsx";
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const inputConfig = [
     {
@@ -40,23 +41,24 @@ export default function LoginForm() {
     },
   ];
 
-  function handleLoginAttempt(data: unknown) {
+  async function handleLoginAttempt(data: unknown) {
     const { uName, uPass } = data as { uName: string; uPass: string };
 
-    // Dummy check for now
-    if (uName && uPass) {
-      console.log("handleLoginAttempt::Alpha");
-      // Simulate assigning ID + privilidge
-      const id = "abc123";
-      const privilidge: USER_PRIVILIDGE = "USER";
+    try {
+      if (uName && uPass) {
+        const resultAction = await dispatch(loginUser({ username: uName }));
 
-      dispatch(setLoggedIn({ id, privilidge }));
-      Cookies.set("session", JSON.stringify({ id, privilidge }), {
-        expires: 1,
-        secure: true,
-        sameSite: "strict",
-      });
-    }
+        if (loginUser.fulfilled.match(resultAction)) {
+          // Cookies.set("session", JSON.stringify({ id, privilidge }), {
+          //   expires: 1,
+          //   secure: true,
+          //   sameSite: "strict",
+          // });
+        } else {
+          //handle error
+        }
+      }
+    } catch (error) {}
   }
 
   return (

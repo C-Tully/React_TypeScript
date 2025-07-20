@@ -11,6 +11,7 @@ type AuthState = {
   id: string;
   isLoggedIn: boolean;
   privilidge: USER_PRIVILIDGE;
+  //loading: false
 };
 
 const initialState: AuthState = {
@@ -40,14 +41,28 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.id = action.payload.id;
+        state.privilidge = action.payload.privilidge;
+        state.isLoggedIn = true;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoggedIn = false;
+        state.id = "";
+        state.privilidge = "GUEST";
+      });
+  },
 });
+
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials: { username: string }, thunkAPI) => {
     try {
       const response = await post<
         {
-          id: String;
+          id: string;
           privilidge: USER_PRIVILIDGE;
         },
         typeof credentials
