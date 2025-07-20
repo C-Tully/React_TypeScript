@@ -10,13 +10,12 @@ import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
 import Button from "../Button/Button.tsx";
 
-const dispatch = useDispatch();
-
 // dispatch(setLoggedIn({ id: "abc123", privilidge: "USER" }));
 // dispatch(logout());
 
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
+  const dispatch = useDispatch();
 
   const inputConfig = [
     {
@@ -41,29 +40,23 @@ export default function LoginForm() {
     },
   ];
 
-  function handleLoginAttempt(id: string, privilidge: USER_PRIVILIDGE) {
-    //Set logged in using React first.
-    dispatch(setLoggedIn({ id, privilidge }));
-    // Set cookie in users browser so we can carry this forward
-    Cookies.set("session", JSON.stringify({ id, privilidge }), {
-      expires: 1, // 1 day
-      secure: true,
-      sameSite: "strict",
-    });
+  function handleLoginAttempt(data: unknown) {
+    const { uName, uPass } = data as { uName: string; uPass: string };
+
+    // Dummy check for now
+    if (uName && uPass) {
+      // Simulate assigning ID + privilidge
+      const id = "abc123";
+      const privilidge: USER_PRIVILIDGE = "USER";
+
+      dispatch(setLoggedIn({ id, privilidge }));
+      Cookies.set("session", JSON.stringify({ id, privilidge }), {
+        expires: 1,
+        secure: true,
+        sameSite: "strict",
+      });
+    }
   }
-
-  // function handleLoginAttempt(data: unknown) {
-  //   const extractedData = data as {
-  //     uName: string;
-  //     uPass: string;
-  //   };
-  //   if (!extractedData.uName || !extractedData.uPass) {
-  //   }
-
-  //   //do some checks here
-
-  //   return true;
-  // }
 
   return (
     <Form
