@@ -12,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 //Setting routes
-app.use("/api/sessions", sessionRoutes);
+// app.use("/api/sessions", sessionRoutes);
+app.use("/api", sessionRoutes);
 
 app.listen(port, () => {
   console.log(`HEY LISTEN! API running at https://localhost:${port}`);
