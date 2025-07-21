@@ -70,6 +70,7 @@ export const loginUser = createAsyncThunk(
 
       return response;
     } catch (error) {
+      console.log("AuthSlice::loginUser::error::", error);
       return thunkAPI.rejectWithValue("Login failed");
     }
   }

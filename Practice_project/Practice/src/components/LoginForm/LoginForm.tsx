@@ -47,7 +47,7 @@ export default function LoginForm() {
     try {
       if (uName && uPass) {
         const resultAction = await dispatch(loginUser({ username: uName }));
-
+        console.log("RESULTACTION::", resultAction);
         if (loginUser.fulfilled.match(resultAction)) {
           // Cookies.set("session", JSON.stringify({ id, privilidge }), {
           //   expires: 1,
