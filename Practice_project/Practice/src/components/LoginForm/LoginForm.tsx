@@ -10,6 +10,7 @@ import { setLoggedIn, logout, loginUser } from "../../store/auth/authSlice.tsx";
 import Form, { FormHandle } from "../Form/Form.tsx";
 import Input from "../Input/Input.tsx";
 import Button from "../Button/Button.tsx";
+import { useNavigate } from "react-router-dom";
 
 // dispatch(setLoggedIn({ id: "abc123", privilidge: "USER" }));
 // dispatch(logout());
@@ -17,6 +18,7 @@ import Button from "../Button/Button.tsx";
 export default function LoginForm() {
   const form = useRef<FormHandle>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const inputConfig = [
     {
@@ -47,18 +49,25 @@ export default function LoginForm() {
     try {
       if (uName && uPass) {
         const resultAction = await dispatch(loginUser({ username: uName }));
-        console.log("RESULTACTION::", resultAction);
+
         if (loginUser.fulfilled.match(resultAction)) {
           // Cookies.set("session", JSON.stringify({ id, privilidge }), {
           //   expires: 1,
           //   secure: true,
           //   sameSite: "strict",
           // });
+
+          form.current?.clear();
+          navigate("/sessions");
         } else {
           //handle error
+          console.log("failed login");
         }
       }
-    } catch (error) {}
+    } catch (e) {
+      console.log("hard error::", e);
+      //oow handle even worse error
+    }
   }
 
   return (
