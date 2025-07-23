@@ -14,7 +14,7 @@ export default function SessionsPage() {
       </header>
       <ul>
         {SESSIONS.map((item, index) => {
-          return <SessionCard item={item} />;
+          return <SessionCard key={item.id} {...item} />;
         })}
       </ul>
 

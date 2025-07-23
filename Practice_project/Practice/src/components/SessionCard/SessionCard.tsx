@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import Button from "../Button/Button.tsx";
 
-//todo:: Import available sessions
-//display.
-//form processing
 type SessionCardProps = {
   id: string;
   title: string;
@@ -24,14 +21,15 @@ export default function SessionCard({
   image,
 }: SessionCardProps) {
   //Get collection of courses?
-  return;
-  <div>
-    <h3>{title}</h3>
-    <p>{summary}</p>
-    <p>{duration}</p>
-    <p>{date}</p>
+  return (
+    <div>
+      <h3>{title}</h3>
+      <p>{summary}</p>
+      <p>{duration}</p>
+      <p>{date}</p>
 
-    {image}
-    <p>{description}</p>
-  </div>;
+      {image}
+      <p>{description}</p>
+    </div>
+  );
 }
