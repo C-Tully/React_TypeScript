@@ -13,7 +13,7 @@ class DockerDatabase implements IDatabaseBuilder {
   public function __construct()
   {
       $this->config = $config;
-      //TODO:: Do I need to implement a singleton pattern as well?
+      
       Config::set('database.connections.dynamic_connection', [
          'driver'    => env('DOCKER_DB_DRIVER', 'mysql'),
             'host'      => env('DOCKER_DB_HOST', '127.0.0.1'),
@@ -39,8 +39,8 @@ class DockerDatabase implements IDatabaseBuilder {
       return DB::connection('dynamic_connection');
   }
 
-  public function BuildCommand() {
-
+  public function getTop5Posts() {
+    
   }
  
 }
