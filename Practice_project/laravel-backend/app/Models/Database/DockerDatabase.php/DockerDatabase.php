@@ -10,22 +10,22 @@ class DockerDatabase implements IDatabaseBuilder {
   
   private DatabaseConfig $config;
 
-  public function __construct(DatabaseConfig $config)
+  public function __construct()
   {
       $this->config = $config;
       //TODO:: Do I need to implement a singleton pattern as well?
       Config::set('database.connections.dynamic_connection', [
-          'driver'    => $this->config->driver,
-          'host'      => $this->config->host,
-          'port'      => $this->config->port,
-          'database'  => $this->config->database,
-          'username'  => $this->config->username,
-          'password'  => $this->config->password,
-          'charset'   => 'utf8mb4',
-          'collation' => 'utf8mb4_unicode_ci',
-          'prefix'    => $this->config->prefix,
-          'strict'    => true,
-          'engine'    => null,
+         'driver'    => env('DOCKER_DB_DRIVER', 'mysql'),
+            'host'      => env('DOCKER_DB_HOST', '127.0.0.1'),
+            'port'      => env('DOCKER_DB_PORT', 3306),
+            'database'  => env('DOCKER_DB_NAME', 'forge'),
+            'username'  => env('DOCKER_DB_USER', 'forge'),
+            'password'  => env('DOCKER_DB_PASS', ''),
+            'charset'   => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix'    => '',
+            'strict'    => true,
+            'engine'    => null,
       ]);
 
       //Clear cache.
@@ -39,7 +39,9 @@ class DockerDatabase implements IDatabaseBuilder {
       return DB::connection('dynamic_connection');
   }
 
-  public function BuildCommand() {}
+  public function BuildCommand() {
+
+  }
  
 }
 
