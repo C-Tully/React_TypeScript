@@ -22,13 +22,11 @@ router.post("/login", (req, res) => {
     return res.status(400).json({ message: "Username is required" });
   }
 
-  // Mock login logic
   const user = {
     id: "12345",
-    privilidge: "ADMIN", // Or "USER", depending on your logic
+    privilidge: "ADMIN",
   };
 
-  console.log("node-api::sending user:", user);
   return res.status(200).json(user);
 });
 
