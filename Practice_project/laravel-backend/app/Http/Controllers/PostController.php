@@ -11,7 +11,8 @@ class PostController extends Controller
         $database->buildConnection();
 
         $connection = $database->buildCommand();
-
+        
+        //small query for examples sake.
         $top5Posts = $connection
                         ->collection('posts')
                         ->orderBy('created_at', 'desc')

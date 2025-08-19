@@ -38,15 +38,6 @@ class DockerDatabase implements IDatabaseBuilder {
   {
       return DB::connection('dynamic_connection');
   }
-
-  public function getTop5Posts() {
-    
-  }
  
 }
 
-  
-
-
-
-?>

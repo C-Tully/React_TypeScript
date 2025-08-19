@@ -1,11 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\BusinessLogicController;
-
-Route::post('/p', [BusinessLogicController::class, 'processLogic']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/api');
+});
+
+//wrap this in a debug mode if statement if need be.
+Route::get('/ping', function () {
+    return response()->json(['status' => 'ok']);
 });
