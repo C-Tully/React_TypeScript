@@ -6,7 +6,7 @@
   use Illuminate\Support\Facades\Config;
   use Illuminate\Support\Facades\DB;
   
-  class DockerDatabase implements IDatabaseBuilder {
+  class MongoDatabase implements IDatabaseBuilder {
     
     private DatabaseConfig $config;
   
