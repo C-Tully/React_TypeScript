@@ -7,11 +7,20 @@ use App\Http\Controller\PostController;
 Route::prefix('posts')->group(function () {
   Route::get('/posts/get-top-posts', [PostController::class, 'topPosts']);
   Route::get('/{id}', [PostController::class, 'show']);
-  // Route::post('/', [PostController::class, 'store']);
+  // Route::post('/new', [PostController::class, 'newPost']);
+  // Route::post('/edit', [PostController::class, 'editPost']);
+  // Route::post('/delete', [PostController::class, 'deletePost']);
 });
 
 Route::prefix('users')->group(function () {  
-  Route::post('/login', [UserController::class, 'loginUser']);
   Route::get('/{id}', [UserController::class, 'show']);
+
+  // Route::post('/edit', [UserController::class, 'editUser']);
+  // Route::post('/delete', [UserController::class, 'deleteUser']);
+  // Route::post('/new', [UserController::class, 'newUser']);
+
+  Route::post('/login', [UserController::class, 'loginUser']);
+  Route::post('/logout', [UserController::class, 'logOut']);
+  
 });
 
