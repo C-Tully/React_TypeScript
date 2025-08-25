@@ -18,8 +18,8 @@
            'driver'    => env('MONGO_DB_DRIVER', 'mysql'), //What should this be for Mongo?
               'host'      => env('MONGO_DB_HOST', '127.0.0.1'),
               'port'      => env('MONGO_DB_PORT', 3306),
-              'database'  => env('MONGO_DB_NAME', 'forge'),
-              'username'  => env('MONGO_DB_USER', 'forge'),
+              'database'  => env('MONGO_DB_NAME', 'mongo-test'),
+              'username'  => env('MONGO_DB_USER', 'root'),
               'password'  => env('MONGO_DB_PASS', ''),
               'charset'   => 'utf8mb4',
               'collation' => 'utf8mb4_unicode_ci',
