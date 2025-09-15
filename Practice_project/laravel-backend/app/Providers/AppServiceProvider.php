@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         //
         DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
             // Notify development team...'
-            dd('Oh noes! DB query longer than...');
+            dd('Oh noes! DB query hung for longer than...');
         });
     }
 }

@@ -15,7 +15,7 @@
         $this->config = $config;
         
         Config::set('database.connections.dynamic_connection', [
-           'driver'    => env('MONGO_DB_DRIVER', 'mysql'), //What should this be for Mongo?
+           'driver'    => env('MONGO_DB_DRIVER', 'mongo'),
               'host'      => env('MONGO_DB_HOST', '127.0.0.1'),
               'port'      => env('MONGO_DB_PORT', 3306),
               'database'  => env('MONGO_DB_NAME', 'mongo-test'),

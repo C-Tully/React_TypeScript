@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../../store/hooks";
-import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
+// import { USER_PRIVILIDGE } from "../../utils/constants.tsx";
 
 import Cookies from "js-cookie";
 
@@ -44,12 +44,14 @@ export default function LoginForm() {
   ];
 
   async function handleLoginAttempt(data: unknown) {
+    console.log("Raw form data:", data);
     const { uName, uPass } = data as { uName: string; uPass: string };
 
     try {
+      console.log("Logic:: ", uName && uPass);
       if (uName && uPass) {
         const resultAction = await dispatch(loginUser({ username: uName }));
-
+        console.log("handleLogin::Bravo::", resultAction);
         if (loginUser.fulfilled.match(resultAction)) {
           // Cookies.set("session", JSON.stringify({ id, privilidge }), {
           //   expires: 1,
@@ -80,7 +82,7 @@ export default function LoginForm() {
       }
     >
       <div className="flex flex-col items-center gap-4">
-        {inputConfig.map((item, index) => (
+        {inputConfig.map((item) => (
           <div className="w-full max-w-sm" key={item.id}>
             <Input
               label={item.label}

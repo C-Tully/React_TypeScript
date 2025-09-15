@@ -18,7 +18,8 @@ app.use(
 app.use(express.json());
 
 //Routes
-app.use("/auth", authRoutes);
+// app.use("/auth", authRoutes);
+app.use("/api", authRoutes);
 
 app.get("/heart-beat", (__req, res) => {
   res.json({
