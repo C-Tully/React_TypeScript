@@ -20,7 +20,13 @@ class PostController extends Controller
                         ->get();
 
         if($top5Posts->is_Empty()) {
-            return [];
+            // return [];
+            return response()
+                ->json([
+                    'status' => 'fail'        
+                ],
+                404
+            );
         }
 
         return response()->json($top5Posts);

@@ -14,7 +14,8 @@ class UserController extends Controller
       'password' => 'required|string|min:6'
     ]);
 
-    $user = DB::table('users')->where('email', $data['email']->first());
+    $user = DB::table('users')
+      ->where('email', $data['email']->first());
     if($user && Hash::check($data['password']-> $user->password)) {
       return response()
         ->json([
