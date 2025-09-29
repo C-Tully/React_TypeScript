@@ -16,12 +16,17 @@ class UserController extends Controller
 
     $user = DB::table('users')->where('email', $data['email']->first());
     if($user && Hash::check($data['password']-> $user->password)) {
-      return response()->json(['status' => 'success', 'user' => $user]);
+      return response()
+        ->json([
+          'status' => 'success', 
+          'user' => $user
+        ]);
     } 
 
-    return response()->json([
-      'status' => 'fail'        
-    ],
+    return response()
+      ->json([
+        'status' => 'fail'        
+      ],
       404
     );
   }
