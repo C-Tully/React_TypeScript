@@ -60,7 +60,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials: { username: string }, thunkAPI) => {
     try {
-      console.log("thunk:: loginUser::");
+      console.log("React:: thunk:: loginUser::");
       const response = await post<
         {
           id: string;
