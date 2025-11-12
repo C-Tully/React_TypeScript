@@ -1,35 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { USER_PRIVILIDGE } from "../../utils/constants";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { USER_PRIVLIDGE } from "../../utils/constants";
 
 type AuthState = {
   id: string;
   isLoggedIn: boolean;
-  privilidge: USER_PRIVILIDGE;
+  privlidge: USER_PRIVLIDGE;
 };
 
 const initialState: AuthState = {
   id: "",
   isLoggedIn: false,
-  privilidge: "GUEST",
+  privlidge: "GUEST",
 };
 
-export const authState = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setPrivilege(state, action: PayloadAction<USER_PRIVILIDGE>) {
-      state.privilidge = action.payload;
+    setPrivilege(state, action: PayloadAction<USER_PRIVLIDGE>) {
+      state.privlidge = action.payload;
     },
-    setLoggedIn(
-      state,
-      action: PayloadAction<{ id: string; privilidge: USER_PRIVILIDGE }>
-    ) {
-      state.id = action.id;
-      state.privilidge = action.privilidge;
-    },
+    // setLoggedIn(
+    //   state,
+    //   action: PayloadAction<{ id: string; privlidge: USER_PRIVLIDGE }>
+    // ) {
+    //   state.id = action.payload.id;
+    //   state.privlidge = action.payload.privlidge;
+    //   state.isLoggedIn = true;
+    // },
+    // logout(state) {
+    //   state.id = "";
+    //   state.privlidge = "GUEST";
+    //   state.isLoggedIn = false;
+    // },
   },
 });
 
-export function checkAuth() {
-  console.log("src/auth/checkAuth::");
-}
+export const {
+  // setLoggedIn,
+  setPrivilege,
+  //  logout
+} = authSlice.actions;
+export default authSlice.reducer;
