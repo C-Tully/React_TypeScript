@@ -3,8 +3,8 @@ import Card from "./Card";
 
 interface Item {
   id: number;
-  title: string;
-  description: string;
+  data: Record<string, string>;
+  // description: string;
 }
 
 interface CardWrapperProps {
@@ -13,8 +13,12 @@ interface CardWrapperProps {
 
 const CardWrapper: React.FC<CardWrapperProps> = ({ item }) => {
   return (
-    <div className="card-wrapper-container">
-      <Card item={item} />
+    <div className="card">
+      {Object.entries(item.data).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value}
+        </p>
+      ))}
     </div>
   );
 };

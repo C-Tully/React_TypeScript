@@ -3,23 +3,21 @@ import CardWrapper from "./CardWrapper";
 
 interface Item {
   id: number;
-  title: string;
-  description: string;
+  data: Record<string, string>;
+  // description: string;
 }
 
 interface ListProps {
   // items: Item[];
-  items: Record<string, string>;
+  items: Item[];
 }
 
 const List: React.FC<ListProps> = ({ items }) => {
   return (
     <div>
       <h3>Item List</h3>
-      {Object.entries(items).map(([key, value]) => (
-        <div key={key}>
-          <strong>{key}:</strong> {value}
-        </div>
+      {items.map((item) => (
+        <CardWrapper key={item.id} item={item} />
       ))}
     </div>
   );

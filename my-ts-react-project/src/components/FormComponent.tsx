@@ -20,17 +20,17 @@ interface DynamicFormProps {
   //Note: Since we are passing in a config object,
   // we need to set this as readonly across usages
   fields: readonly InputConfig[];
-  data: Record<string, any>;
-  setData: React.Dispatch<React.SetStateAction<Record<string, any>>>;
-  onSubmit: (data: Record<string, any>) => void;
+  data: Record<string, string>;
+  setData: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+  onSubmit: (data: Record<string, string>) => void;
 }
 
-export default function FormComponent({
+const FormComponent: React.FC<DynamicFormProps> = ({
   fields,
   data,
   setData,
-  onSubmit,
-}: DynamicFormProps) {
+  onSubmit, //Needed to pass data up
+}) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     //Pass data up to parent
@@ -65,7 +65,7 @@ export default function FormComponent({
           ) : (
             <input
               id={field.name}
-              type={field.type} // 'text' | 'tel'
+              type={field.type}
               required={field.required}
               value={data[field.name] ?? ""}
               onChange={(e) =>
@@ -83,4 +83,6 @@ export default function FormComponent({
       </button>
     </form>
   );
-}
+};
+
+export default FormComponent;
