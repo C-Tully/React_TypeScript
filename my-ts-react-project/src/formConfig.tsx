@@ -1,4 +1,6 @@
-export const formConfig = [
+import { InputConfig } from "./components/FormComponent";
+
+export const formConfig: InputConfig[] = [
   {
     name: "firstName",
     label: "First Name",
@@ -7,7 +9,7 @@ export const formConfig = [
   },
   {
     name: "lastName",
-    lable: "Last Name",
+    label: "Last Name",
     type: "text",
     required: true,
   },
@@ -21,19 +23,10 @@ export const formConfig = [
     label: "Preferred Contact Method",
     type: "select",
     required: true,
-    options: [
-      {
-        label: "Phone",
-        value: "phone",
-      },
-      {
-        label: "Email",
-        value: "email",
-      },
-      {
-        label: "Text",
-        value: "phone",
-      },
+    option: [
+      { label: "Phone", value: "phone" },
+      { label: "Email", value: "email" },
+      { label: "Text", value: "text" },
     ],
   },
-] as const;
+];

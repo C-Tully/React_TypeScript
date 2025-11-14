@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import "./App.css";
 import data from "./tempData.json";
 import List from "./components/List";
-import FormComponent, { FormInput } from "./components/FormComponent";
+import FormComponent from "./components/FormComponent";
 import { formConfig } from "./formConfig";
 
 //Goal: Allow a user to enter data from a form and
 //have it output in a list
 function App() {
   //Set intial state based on config.
-  const initFormState = formConfig.reduce((acc, field) => {
-    acc[field.name] = "";
-    return acc;
-  }, {} as Record<string, string>);
+  const initFormState: Record<string, string> = formConfig.reduce(
+    (acc, field) => {
+      acc[field.name] = "";
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 
   const [formData, setFormData] = useState(initFormState);
 
-  const handleAddItem = (data: typeof formData) => {
+  const handleSubmit = (data: typeof formData) => {
     //We want to make sure were keeping the previous items
     console.log("Submitted::", data);
   };

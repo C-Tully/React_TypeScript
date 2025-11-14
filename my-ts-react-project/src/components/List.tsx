@@ -8,15 +8,18 @@ interface Item {
 }
 
 interface ListProps {
-  items: Item[];
+  // items: Item[];
+  items: Record<string, string>;
 }
 
 const List: React.FC<ListProps> = ({ items }) => {
   return (
     <div>
       <h3>Item List</h3>
-      {items.map((item) => (
-        <CardWrapper key={item.id} item={item} />
+      {Object.entries(items).map(([key, value]) => (
+        <div key={key}>
+          <strong>{key}:</strong> {value}
+        </div>
       ))}
     </div>
   );
