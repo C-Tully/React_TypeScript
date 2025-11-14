@@ -20,25 +20,21 @@ export const authSlice = createSlice({
     setPrivilege(state, action: PayloadAction<USER_PRIVLIDGE>) {
       state.privlidge = action.payload;
     },
-    // setLoggedIn(
-    //   state,
-    //   action: PayloadAction<{ id: string; privlidge: USER_PRIVLIDGE }>
-    // ) {
-    //   state.id = action.payload.id;
-    //   state.privlidge = action.payload.privlidge;
-    //   state.isLoggedIn = true;
-    // },
-    // logout(state) {
-    //   state.id = "";
-    //   state.privlidge = "GUEST";
-    //   state.isLoggedIn = false;
-    // },
+    setLoggedIn(
+      state,
+      action: PayloadAction<{ id: string; privlidge: USER_PRIVLIDGE }>
+    ) {
+      state.id = action.payload.id;
+      state.privlidge = action.payload.privlidge;
+      state.isLoggedIn = true;
+    },
+    logout(state) {
+      state.id = "";
+      state.privlidge = "GUEST";
+      state.isLoggedIn = false;
+    },
   },
 });
 
-export const {
-  // setLoggedIn,
-  setPrivilege,
-  //  logout
-} = authSlice.actions;
+export const { setLoggedIn, setPrivilege, logout } = authSlice.actions;
 export default authSlice.reducer;

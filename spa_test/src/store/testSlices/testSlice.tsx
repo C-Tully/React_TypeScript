@@ -14,7 +14,7 @@ export const testSlice = createSlice({
   name: "test",
   initialState,
   reducers: {
-    setLabel(state, action: PayloadAction<string>) {
+    setLabelValue(state, action: PayloadAction<string>) {
       state.label = action.payload;
     },
     setType(state, action: PayloadAction<boolean>) {
@@ -23,6 +23,6 @@ export const testSlice = createSlice({
   },
 });
 
-export const { setLabel, setType } = testSlice.actions;
+export const { setLabelValue, setType } = testSlice.actions;
 
 export default testSlice.reducer;
